@@ -10,11 +10,18 @@ J'ai créé ce projet pour conserver les petites analyses que je fais pour prép
 - enrôlement
 - demande des données Pratiques culturelles 2018
 - attendre
-- télécharger les données
+- télécharger les données au format SAS : 
+  - `pc18_quetelet.sas7bdat`
+  - `Format_lil-1511_SAS.txt`
 
 ### Préparer le projet 
 
-- télécharger ce dépôt github.
-- créer un projet R et y placer tous les fichiers téléchargés
-- Dans le dossier racine du projet, créer un dossier `data`. 
-- Placer dedans les fichiers de données téléchargés
+- Créer un projet R (le mien s'appelle `PC2018-stage-R`).
+- Dans le dossier racine du projet, créer un dossier `data/`. 
+- Placer dans `data/`  les  données téléchargées
+- télécharger le fichier `01_IMPORT.R` et le placer dans le dossier racine du projet.
+- exécuter  `01_IMPORT.R`.
+- Dans le dossier  `data/` on doit trouver un nouveau fichier `PC18_avec_labels.RDS`, dans lequel les variables catégorielles sont des facteurs.
+
+
+Si on préfère travailler avec des nombres plutôt qu'avec l'intitulé des modalités (pendant les recodages par exemple) il est possible de modifier le fichier `01_IMPORT.R`.
