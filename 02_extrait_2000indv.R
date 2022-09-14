@@ -12,7 +12,7 @@ set.seed(123)
 
 sample_n(data, size = 2000, replace = T)
 
-saveRDS("data/PC18_extrait_avec_labels.RDS")
+saveRDS(data, "data/PC18_extrait_avec_labels.RDS")
 
 ## version sans labels
 
