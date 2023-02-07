@@ -23,7 +23,9 @@ library(haven)
 
 ## importer les données sas ----
 
-PC18 <- read_sas("data/pc18_quetelet_octobre2021.sas7bdat") %>%  as_tibble
+# ==> modifier le chemin ou le nom du fichier si besoin
+
+PC18 <- read_sas("data/pc18_quetelet_novembre2022.sas7bdat") %>%  as_tibble
 
   # liste des variables numériques et charactère dans le fichier, pcq ça pose pb après.
 list_char <- PC18 %>% select(where(is.character)) %>%  names
