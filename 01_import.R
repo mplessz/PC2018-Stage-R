@@ -72,12 +72,33 @@ formats_num  <- formats %>%  filter(var  %in% list_num) %>%
 formats_char <- formats %>%  filter(var  %in% list_char) %>% 
   mutate(val = as.character(val))
 
+
+
+
  
 ## transformer en une liste de named vectors ----
   # faire une liste de dataframes, un par variable
 
 valuelist_num <- formats_num %>% group_split(var) 
 names(valuelist_num) <- formats_num %>% group_keys(var) %>% pull(var)
+
+
+######## MODIF de Ida ################
+
+# jenleve ce label tout court, sinon j'ai un doublon apres et ca bug 
+#label_datdip <- which(names(valuelist_num) == "DATDIP_C_1")
+#valuelist_num <- valuelist_num[-label_datdip];
+
+# pour les autres variables concernées: 
+
+# Identifier les index des variables concernées 
+varsC_1 <- which(str_detect(names(valuelist_num),"_C_1"))
+
+# Enlever la chaine de caracteres _C_1
+for (n in varsC_1){
+  names(valuelist_num)[n] <- str_remove(names(valuelist_num)[n],"_C_1") 
+}
+######################################
 
   # chaque item de la liste a pour nom le nom de la variable
  #names(valuelist) <- formats %>%   group_by(var) %>% nest %>% pull(var) 
@@ -97,8 +118,6 @@ names(valuelist_char) <- formats_char %>% group_keys(var) %>% pull(var)
 valuelist_char <- sapply(valuelist_char, function(x) {x %>% select(val_lab, val) %>% deframe})
 
 valuelist <- append(valuelist_char, valuelist_num)
-
-
 
 
 ## appliquer les labels aux variables numériques dans le fichier de data----
